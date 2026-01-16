@@ -146,7 +146,8 @@ download_hytale() {
     fi
 
     msg CYAN "  Local version: ${LOCAL_VERSION:-none installed}"
-
+    "$DOWNLOADER_BIN" -check-update
+	timeout 300
     # Get remote version without downloading
     msg BLUE "[update 1/3] Fetching remote version..."
     REMOTE_VERSION=$(timeout 10 "$DOWNLOADER_BIN" -patchline "$PATCHLINE" -print-version -skip-update-check 2>/dev/null | head -1)
